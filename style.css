@@ -1,0 +1,51 @@
+body {
+  background-color: #d7cec7;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  height: 30px;
+  width: 30px;
+  display: block;
+  border: 1px solid black;
+  transition: background-color 0.4s;
+}
+
+.off {
+  background-color: white;
+}
+
+.on {
+  background-color: black;
+}
+
+main {
+  padding: 100px;
+  height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+aside {
+  grid-row: span 2;
+  background-color: #C09F80;
+}
+
+section {
+  background-color: #C09F80;
+  width: 864px;
+}
+
+
+
+/* Colors */
+/* gray: #d7cec7 */
+/* dark: #565656 */
+/* red: #76323F */
+/* tan: #C09F80 */
