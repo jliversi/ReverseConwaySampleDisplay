@@ -1,8 +1,8 @@
 import Game from './game.js'
-import * as PATTERNS from './inputs_patterns.js';
+import { PATTERN_MAP } from './inputs_patterns.js';
 import { transpose } from './util.js';
 
-const startingPattern = transpose(PATTERNS.face);
+const startingPattern = transpose(PATTERN_MAP['conway']);
 
 const { x, y } = {
   x: startingPattern[0].length,
@@ -23,7 +23,7 @@ stop.addEventListener('click', e => {
   stop.disabled = true;
   start.disabled = false;
   game.stop();
-})
+});
 
 document.getElementById('one-step').addEventListener('click', e => {
   if (game.running) {
@@ -35,60 +35,31 @@ document.getElementById('one-step').addEventListener('click', e => {
     game.runRound();
     game.renderScrollX();
   }
-})
+});
 
 document.getElementById('clear').addEventListener('click', e => {
   game.stop();
   game.clearBoard();
 })
 
-const slow = document.getElementById('slow');
-const fast = document.getElementById('fast');
+document.getElementById('export').addEventListener('click', e => {
+  navigator.clipboard.writeText(
+    JSON.stringify(
+      transpose(transpose(transpose(game.board.map(r => r.map(s => s ? 1 : 0)))))
+    )
+  ).then(() => alert("Pattern copied to clipboard as JSON"));
+});
 
-slow.addEventListener('click', e => {
-  slow.disabled = true;
-  fast.disabled = false;
-  game.changeSpeed(1000);
-})
-fast.addEventListener('click', e => {
-  fast.disabled = true;
-  slow.disabled = false;
-  game.changeSpeed(600);
-})
+const speed = document.getElementById('speed');
 
-document.getElementById('js').addEventListener('click', e => {
-  start.disabled = true;
-  stop.disabled = false;
-  const jsPattern = transpose(PATTERNS.js);
-  game.switchPatterns(jsPattern);
-})
-document.getElementById('python').addEventListener('click', e => {
-  start.disabled = true;
-  stop.disabled = false;
-  const pythonPattern = transpose(PATTERNS.python);
-  game.switchPatterns(pythonPattern);
-})
-document.getElementById('react').addEventListener('click', e => {
-  start.disabled = true;
-  stop.disabled = false;
-  const reactPattern = transpose(PATTERNS.react);
-  game.switchPatterns(reactPattern);
-})
-document.getElementById('ruby').addEventListener('click', e => {
-  start.disabled = true;
-  stop.disabled = false;
-  const rubyPattern = transpose(PATTERNS.ruby);
-  game.switchPatterns(rubyPattern);
-})
-document.getElementById('sql').addEventListener('click', e => {
-  start.disabled = true;
-  stop.disabled = false;
-  const sqlPattern = transpose(PATTERNS.sql);
-  game.switchPatterns(sqlPattern);
-})
-document.getElementById('rails').addEventListener('click', e => {
-  start.disabled = true;
-  stop.disabled = false;
-  const railsPattern = transpose(PATTERNS.rails);
-  game.switchPatterns(railsPattern);
-})
+speed.addEventListener('change', e => {
+  game.changeSpeed(1500 - e.target.value);
+});
+
+const patternSelect = document.getElementById('pattern-select');
+patternSelect.addEventListener('change', e => {
+  start.disabled = false;
+  stop.disabled = true;
+  const pattern = transpose(PATTERN_MAP[e.target.value]);
+  game.switchPatterns(pattern);
+});

@@ -3,31 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://kit.fontawesome.com/88d08e29d0.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+
   <script src="./dist/main.js" defer></script>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
-  <title>Conway</title>
+
+  <link rel="icon" type="image/x-icon" href="assets/conway_favicon.png">
+  <title>Reverse Conway</title>
 </head>
 <body>
   <main>
-    <aside>INPUT EXPLANATIOSN AND LINKS AND ETC HERER</aside>
+    <aside>
+      <h1>Reversing Conway's Game of Life</h1>
+      <p>Early in my programming/computer science journey, I became fascinated with <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a>. One problem I was particularly interested in solving was whether you could play the game "backwards". That is, given a state X, can you produce the previous state Y?</p>
+      <p>Using python, I built a small project which takes 2D patterns and outputs a previous state. This site serves as a small sample of some of those patterns (mostly text as those are the easiest "meaningful" patterns to fit into such a small resolution). For the full source code and write up on the program which produces these previous states, <a href="https://github.com/jliversi/ReverseConway">check out the github repo here</a></p>
+      <p>To use this site, load a pattern using the dropdown. Then either click <i class="fa-solid fa-play"></i> to run the Game of Life, or click <i class="fa-solid fa-forward-step"></i> to go step by step. After three steps, the intended pattern will be produced.</p>
+      <p>(The source code for this small site can be found <a href="https://github.com/jliversi/ReverseConwaySampleDisplay">here</a>)</p>
+      <p>For any questions, shoot me a message at <a href="mailto:jliversi.dev@gmail.com">jliversi.dev@gmail.com</a></p>
+    </aside>
     <table id="board"></table>
     <section>
-      <div id='control-buttons'>
-        <button id="start">Start</button>
-        <button id="stop" disabled>Stop</button>
-        <button id="one-step">One step</button>
-        <button id='clear'>Clear</button>
-        <button id='slow' disabled>Slow</button>
-        <button id='fast'>Fast</button>
+      <div class='pattern-div'>
+        <h2><label for="pattern">Patterns</label></h2>
+        <select name="pattern" id="pattern-select">
+          <option value="conway">Conway</option>
+          <option value="game">Game</option>
+          <option value="of_life">of Life</option>
+          <option value="python">Python</option>
+          <option value="space_invader">Space Invader</option>
+          <option value="arrows">Arrows</option>
+          <option value="car">Car</option>
+        </select>
       </div>
-      <div id='pattern-buttons'>
-        <button id="js">JS</button>
-        <button id="python">Python</button>
-        <button id="react">React</button>
-        <button id="ruby">Ruby</button>
-        <button id="sql">SQL</button>
-        <button id="rails">Rails</button>
+      
+      <button id="start"><i class="fa-solid fa-play"></i></button>
+      <button id="stop" disabled><i class="fa-solid fa-pause"></i></button>
+      <button id="one-step"><i class="fa-solid fa-forward-step"></i></button>
+      <button class='non-control-btn' id='export'>Export Pattern</button>
+      <button class='non-control-btn' id='clear'>Clear</button>
+      <div>
+        <label for="speed">Speed</label>
+        <input type="range" name="speed" id="speed" min="0" max="1100" value="200">
       </div>
     </section>
   </main>

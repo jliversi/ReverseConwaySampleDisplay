@@ -198,9 +198,6 @@ class Game {
     setTimeout(() => {
       this.board = pattern;
       this.renderScrollY();
-      setTimeout(() => {
-        this.run();
-      }, 400)
     }, 400)
   }
 

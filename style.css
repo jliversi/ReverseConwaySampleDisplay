@@ -1,5 +1,10 @@
 body {
   background-color: #d7cec7;
+  font-family: "Quicksand", sans-serif;
+}
+
+#board {
+  cursor: pointer;
 }
 
 .row {
@@ -23,23 +28,123 @@ body {
 }
 
 main {
-  padding: 100px;
-  height: 100vh;
+  padding: 50px 0;
+  width: 1284px;
   box-sizing: border-box;
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 224px 1fr;
+  margin: 0 auto;
 }
 
 aside {
   grid-row: span 2;
   background-color: #C09F80;
+  padding: 20px;
+  overflow-y: auto;
+  width: 400px;
+  height: fit-content;
+  box-sizing: border-box;
+  direction: rtl;
+}
+
+aside h1 {
+  direction: ltr;
+  text-align: center;
+}
+aside p {
+  direction: ltr;
+  text-align: center;
+}
+
+aside h1 {
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+aside p {
+  margin: 15px 0;
 }
 
 section {
   background-color: #C09F80;
   width: 864px;
+  height: 229px;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.pattern-div {
+  align-self: start;
+  margin-top: 20px;
+  grid-row: span 2;
+}
+
+button {
+  cursor: pointer;
+}
+
+button i {
+  font-size: 4em;
+}
+
+.non-control-btn {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+
+h2 label {
+  font-size: 1.5em;
+}
+
+select {
+  font-size: 2em;
+  width: 260px;
+  text-align: center;
+  cursor: pointer;
+}
+
+i {
+  font-family: "Font Awesome 6 Free";
+}
+
+.fa-play {
+  color: green;
+}
+.fa-pause {
+  color: red;
+}
+.fa-forward-step {
+  color: blue;
+}
+button:disabled i {
+  color: grey !important;
+}
+
+@media screen and (max-width: 1300px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 864px;
+    align-items: center;
+
+  }
+  aside {
+    width: 864px;
+    grid-row: auto;
+  }
 }
 
 
